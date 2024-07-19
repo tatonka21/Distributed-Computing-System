@@ -1,3 +1,4 @@
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -140,7 +141,7 @@ public class MainThread extends Thread {
 		BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 		String line = "";
 		
-		while((line = bfr.readLine()) != null) {
+		while((line = BoundedLineReader.readLine(bfr, 5_000_000)) != null) {
 		// display each output line form python script
 			System.out.println(line);
 		}
