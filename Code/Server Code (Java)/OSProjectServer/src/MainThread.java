@@ -1,3 +1,4 @@
+import io.github.pixee.security.SystemCommand;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -134,7 +135,7 @@ public class MainThread extends Thread {
 		 
 		// create runtime to execute external command
 		Runtime rt = Runtime.getRuntime();
-		Process pr = rt.exec(cmd);
+		Process pr = SystemCommand.runCommand(rt, cmd);
 		 
 		// retrieve output from python script
 		BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
