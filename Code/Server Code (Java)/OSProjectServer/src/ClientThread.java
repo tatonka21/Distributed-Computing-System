@@ -1,3 +1,4 @@
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -107,7 +108,7 @@ public class ClientThread  extends Thread {
 			            
 			        String line3 = "---fileSendingFinishedByServer---";
 			        System.out.println("file being sent - " +Name); 
-			        while((line2 = bufferedReader.readLine()) != null) {  
+			        while((line2 = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null) {  
 						  pwrite.println(line2);             
 						  pwrite.flush();	  
 			         } 
@@ -119,7 +120,7 @@ public class ClientThread  extends Thread {
 					  
 					  while(true)
 					  {
-					    if((receiveMessage = receiveRead.readLine()) != null)  
+					    if((receiveMessage = BoundedLineReader.readLine(receiveRead, 5_000_000)) != null)  
 					    {
 					       System.out.println("Current Count: " +receiveMessage);  
 					       long countInThisFile = processReceivedResult(receiveMessage);
