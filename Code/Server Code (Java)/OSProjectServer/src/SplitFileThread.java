@@ -1,3 +1,4 @@
+import io.github.pixee.security.BoundedLineReader;
 import java.awt.Container;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -115,7 +116,7 @@ public class SplitFileThread extends Thread {
             String chunkfileContent = "";
             
             //for each line in the input file
-            while((line = bufferedReader.readLine()) != null) {
+            while((line = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null) {
             	
             	//increment the count for each line
             	count++;
